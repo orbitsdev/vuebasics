@@ -17,18 +17,26 @@
         <section class="section1">
             <h1>Monster Slayer</h1>
         </section>
+       
         <section class="section2">
             <div v-if="isPlayerWin !== null" class="winner-indicator" >
-                <p v-if="isPlayerWin">
+                <p v-if="isPlayerWin ==='draw'">
+
+                    Draw 
+
+                </p>
+              
+                <p v-else-if="isPlayerWin">
 
                     You Win 👏👏 
 
                 </p>
-                <p v-if="!isPlayerWin">
+                <p v-else="!isPlayerWin">
 
                     You Lose 😥😥
 
                 </p>
+               
 
             </div>
             <div class="card">
