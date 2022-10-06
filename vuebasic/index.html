@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+        body{
+            padding:20px 18px;
+            background:#f4f4f4;
+        }
+
+
+        .goal{
+            padding: 8px 8px ;
+            border: 1px;
+            border-style: sold;
+            min-height: 100px;
+            background: white;
+            box-shadow:  0px 3px 8px;
+            border-radius: 4px;
+            
+             
+
+        }
+        .goal p {
+
+            font-size: 14px;
+            color:gray;
+            
+        }
+        hr {
+            color:rgba(0, 0, 0, 0.24);
+        }
+        input[type="text"] { 
+            margin: 4px 0px;
+        }
+        ul{
+            padding: 0;
+            list-style-type: none;
+
+        }
+        li {
+            margin: 4px 0px;
+            padding: 4px;
+            border:1px;
+            border-color:rgba(0, 0, 0, 0.24) ;
+            border-style:solid ;
+            border-radius: 4px;
+
+        }
+        .box{
+            height: 50px;
+            padding: 5px;
+
+            margin: 4px 0px ;
+            border: 1px;
+            transition: all 0.3s ease-in-out;
+            border-style: dotted;
+        }
+
+        .active {
+            transform: scale(1.025);
+            background: purple;
+            transition: all 0.3s ease-in-out;
+           
+
+        }
+
+        .active p{
+            color:white;
+        }
+        .goal-parent{
+            background-color: #372948;
+            
+         }
+        .goaltext{
+            text-align: center;
+            font-size: 20px;
+            color:white;
+            padding: 12px 0px;
+        
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="app">
+        
+
+        <div class="goal">
+            <div v-for="(bx, index) in boxes" :key="index"  :class="['box' ,{active: bx.value}]"  @click="selectedBox(index)">
+                <p>{{ bx.value }}</p>
+            </div>
+          
+          
+          
+            <div v-if="isShow" :style="{transition: isShow? 'transition:all 0.7s ease-in-out' : ''}">
+
+                <p><span style="color: purple; font-size:18px ">Computed</span> - Properties is a method that will react only if the data is belong to its scope it will not affected by another data when it changes</p>
+                <hr >
+                <p><span style="color: purple; font-size:18px "> Watch </span> -  The same as computed method but for specfic data. Example If the student has a properties of names and age you may need to secify these  individually insie watch. Too much  to handle for many data  ,while computed method watch all properties at once when the property chnage.  </p>
+                <p>Watch shine if you wan to do something to the speccifi data when change. For example you have counter properties with value of 0. you can reset thise when the value exceed to 50. over all you can use watch if you want to do something when the specifc data change  </p>
+            </div>
+            <button @click="isShow = !isShow">Show What You  Learned</button>
+            <div>
+                <hr>
+             
+                <p>
+    
+                    title:  {{ form.title }}   
+                </p>
+                <p>
+                    text: {{ form.text }}
+    
+                </p>
+                <p>
+                    randome: {{randomText }}
+    
+                </p>
+               
+            
+            </div>
+            
+
+            <input type="text" v-model="form.title" >
+            <br>
+            <input type="text" v-model="form.text" >
+            <div style="height:4px"></div>
+            <button @click="addGoal">Add</button>
+            
+ 
+            <button v-if="selectedIndex !== null  " @click="updateGoal">Update</button>
+            <!-- <button v-if="selectedIndex !== false" @click="updateGoal">Update</button> -->
+          
+            <br>
+            <hr>
+
+
+            <div class="goal-parent">
+
+                <div v-if="goals.length === 0" class="goaltext">Goal</div>
+
+                <ul v-else style=" background-color:#FFCACA ;">
+                    
+                    <li v-for="(goal, index) in goals" :key="index" @click="selectedGoal(index)" @dblclick="removeGoal(index)" > 
+                        <span>
+                            {{ goal.title }}
+                            
+                        </span>
+                        <span style="display:block; color:gray">{{ goal.text }}</span>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+    
+
+
+    <script src="app.js"></script>
+</body>
+</html>

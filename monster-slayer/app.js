@@ -87,7 +87,6 @@ const app = Vue.createApp({
     },
     surrender() {
       if (this.playerHealth > 0) {
-        this.playerHealth = 0;
         this.isPlayerWin = false;
       }
     },
