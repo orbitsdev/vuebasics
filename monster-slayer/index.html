@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  
+</head>
+<body>
+    <div id="app">
+
+        <section class="section1">
+            <h1>Monster Slayer</h1>
+        </section>
+        <section class="section2">
+            <div v-if="isPlayerWin !== null" class="winner-indicator" >
+                <p v-if="isPlayerWin">
+
+                    You Win 👏👏 
+
+                </p>
+                <p v-if="!isPlayerWin">
+
+                    You Lose 😥😥
+
+                </p>
+
+            </div>
+            <div class="card">
+                <h2 class="title">Monster Health</h2>
+                <div class="bar">
+                    
+                    <div class="bar-value" :style="monsterBarStyle" ></div>
+                </div>
+            </div>
+            <div class="card">
+                <h2 class="title">Your Health</h2>
+                <div class="bar">
+                    
+                    <div class="bar-value" :style="playerBarStyle"></div>
+                </div>
+            </div>
+        </section>
+        <section class="section3" v-if="isPlayerWin === null">
+            <button @click="attackMonster"> ATTACK</button>
+            <button @click="specialAttack"> Special ATTACk</button>
+            <button @click="heal"> HEAL</button>
+            <button @click="surrender"> Surrender</button>
+        </section>
+        <section class="section3" v-else>
+            
+            <button @click="restartGame"> Restart</button>
+        </section>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
